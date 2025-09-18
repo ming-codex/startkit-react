@@ -6,5 +6,10 @@ export default {
   userGreeting: '你好，{{username}}！',
   itemCount: '共 {{count}} 项',
   lastUpdated: '最后更新：{{date}}',
+
+  // 表格列标题
+  name: '姓名',
+  age: '年龄',
+  address: '地址',
 }
 

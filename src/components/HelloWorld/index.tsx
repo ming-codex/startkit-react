@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Button, Table, Tooltip } from 'antd'
 import { useLanguageSwitch } from '@/i18n/hooks'
 import { useCounter } from './hooks/useCounter'
@@ -13,6 +13,53 @@ const HelloWorld: React.FC<HelloWorldProps> = ({ msg }) => {
   const { switchLanguage } = useLanguageSwitch()
 
   const { count, increment } = useCounter()
+
+  // 优化：使用 useMemo 缓存表格数据，避免每次渲染重新创建
+  const dataSource = useMemo(
+    () => [
+      {
+        key: '1',
+        name: '张三',
+        age: 32,
+        address: '北京市朝阳区',
+      },
+      {
+        key: '2',
+        name: '李四',
+        age: 28,
+        address: '上海市浦东新区',
+      },
+      {
+        key: '3',
+        name: '王五',
+        age: 35,
+        address: '广州市天河区',
+      },
+    ],
+    []
+  )
+
+  // 优化：使用 useMemo 缓存列配置，只在翻译函数变化时重新计算
+  const columns = useMemo(
+    () => [
+      {
+        title: t('name'),
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: t('age'),
+        dataIndex: 'age',
+        key: 'age',
+      },
+      {
+        title: t('address'),
+        dataIndex: 'address',
+        key: 'address',
+      },
+    ],
+    [t]
+  )
 
   return (
     <div className="hello-world">
@@ -31,7 +78,7 @@ const HelloWorld: React.FC<HelloWorldProps> = ({ msg }) => {
 
       <div className="hello-world__welcome">{t('welcome')}</div>
 
-      <Table className="hello-world__table" dataSource={[]} columns={[]} pagination={{ pageSize: 5 }} />
+      <Table className="hello-world__table" dataSource={dataSource} columns={columns} pagination={{ pageSize: 5 }} />
 
       <div className="hello-world__counter">
         <button type="button" className="hello-world__counter-button" onClick={() => increment()}>

@@ -5,4 +5,8 @@ export default {
   userGreeting: 'Hello, {{username}}!',
   itemCount: '{{count}} items in total',
   lastUpdated: 'Last updated: {{date}}',
+
+  name: 'Name',
+  age: 'Age',
+  address: 'Address',
 }

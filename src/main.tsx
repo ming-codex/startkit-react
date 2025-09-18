@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
+import '@ant-design/v5-patch-for-react-19'
 // Antd 5.x 使用 CSS-in-JS，无需单独导入样式文件
 
 import './style.less'
