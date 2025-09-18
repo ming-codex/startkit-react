@@ -1,0 +1,65 @@
+// HelloWorld 组件专用样式
+
+// 变量定义
+@primary-color: #2c3e50;
+@accent-color: #42b883;
+@accent-hover-color: #369870;
+@spacing-small: 0.5rem;
+@spacing-medium: 1rem;
+@spacing-large: 1.5rem;
+@gap-small: 8px;
+@gap-medium: 20px;
+@border-radius: 4px;
+@transition-duration: 0.3s;
+
+// 主容器
+.hello-world {
+  text-align: center;
+
+  // 标题样式
+  &__title {
+    color: @primary-color;
+    margin-bottom: @spacing-medium;
+  }
+
+  // 语言切换器
+  &__language-switcher {
+    margin: @gap-medium 0;
+    display: flex;
+    gap: @gap-small;
+    justify-content: center;
+  }
+
+  // 欢迎文本
+  &__welcome {
+    margin: @spacing-medium 0;
+    font-size: 1.1em;
+    color: @accent-color;
+  }
+
+  // 计数器容器
+  &__counter {
+    margin: @spacing-medium 0;
+
+    // 计数器按钮
+    &-button {
+      background-color: @accent-color;
+      color: white;
+      border: none;
+      padding: @spacing-small @spacing-medium;
+      border-radius: @border-radius;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color @transition-duration;
+
+      &:hover {
+        background-color: @accent-hover-color;
+      }
+    }
+  }
+
+  // 表格样式
+  &__table {
+    margin-bottom: @spacing-medium;
+  }
+}

@@ -1,0 +1,8 @@
+README.md
+docs/**/*.md
+dist
+dist-ssr
+coverage
+node_modules
+*.local
+.env*

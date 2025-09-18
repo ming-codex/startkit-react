@@ -1,0 +1,47 @@
+name: Deploy Frontend App
+
+on:
+  push:
+    branches:
+      - main # 当 main 分支有 push 时触发
+
+permissions:
+  contents: write # 允许写入 gh-pages 分支
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      # 自动检测 build 目录 (React) 或 dist 目录 (Vue)
+      - name: Detect publish dir
+        id: detect
+        run: |
+          if [ -d "build" ]; then
+            echo "dir=build" >> $GITHUB_OUTPUT
+          elif [ -d "dist" ]; then
+            echo "dir=dist" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Error: No build or dist directory found!"
+            exit 1
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./${{ steps.detect.outputs.dir }}
