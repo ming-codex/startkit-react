@@ -1,0 +1,1 @@
+import{j as s}from"./index-BNnvugmJ.js";import"./react-vendor-BAcgS92z.js";import"./antd-BHEDpRSI.js";import"./i18n-Dt8gD94O.js";const a=()=>s.jsx("div",{className:"about",children:s.jsx("h1",{children:"This is an about page"})});export{a as default};
